@@ -9,7 +9,7 @@
     ]
   },
   "publicPath": "/wp-content/themes/sage",
-  "devUrl": "http://example.nixon",
+  "devUrl": "http://localhost/nixon",
   "proxyUrl": "http://localhost:3000",
   "cacheBusting": "[name]_[hash:8]",
   "watch": [
