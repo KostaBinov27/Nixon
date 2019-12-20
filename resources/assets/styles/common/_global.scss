@@ -2,37 +2,75 @@ body {
   background: #ebeeef !important;
 }
 
-.container-login100 {
-  width: 100%;
-  min-height: 100vh;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
-  background: #ebeeef;
+.loginBTN {
+  background-color: #57b846;
+  border-color: #57b846;
+  padding: 8px 50px;
+  border-radius: 20px;
 }
 
-.wrap-login100 {
-  width: 670px;
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
+.loginBTN:hover {
+  color: #fff;
+  background-color: #459038 !important;
+  border-color: #459038 !important;
 }
 
-.login100-form {
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 43px 88px 93px 190px;
+.form-design {
+  padding: 60px 100px 100px 100px;
+  background-color: #fff;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  color: #808080;
+}
+
+.form-header-design {
+  background-image: url(http://localhost/nixon/wp-content/uploads/2019/12/photo-1486406146926-c627a92ad1ab.jpg);
+  background-position: center;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.form-header-design::before {
+  background-color: #365463a8;
+}
+
+.form-header-design h3 {
+  color: #fff;
+  background-color: rgba(54, 84, 99, 0.7);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  margin-bottom: 0;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.bg-color-custom {
+  margin-bottom: 50px;
+  background-color: #fff;
+  border-bottom: 1px solid #7d7d7d66;
+}
+
+#navbarNavDropdown a {
+  color: #7d7d7d;
+  padding: 20px;
+  text-transform: uppercase;
+}
+
+#navbarNavDropdown a:hover {
+  text-decoration: none;
+  color: #3a3a3a;
+}
+
+.form-control:focus {
+  border-color: #57b846;
+  box-shadow: 0 0 0 0.2rem rgba(87, 184, 70, 0.26);
+}
+
+.txt1 {
+  color: #808080;
+}
+
+.txt1:hover {
+  color: #565656;
+  text-decoration: none;
 }

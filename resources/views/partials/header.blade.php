@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg pb-5 ">
+<nav class="navbar navbar-expand-lg bg-color-custom">
   <div class="container">
     <a class="brand" href="{{ home_url('/') }}">
       <div class="brand-logo">
