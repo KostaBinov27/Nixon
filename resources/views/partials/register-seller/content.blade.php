@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container wrapCustom">
     <div class="row">
         <div class="col-lg-8 mx-auto">
             <div class="formLogin">
                 <div class="form-header-design">
-                    <h3>Register as Buyer</h3>
+                    <h3>Register as Seller</h3>
                 </div>
                 <div class="form-design">
                     <form>

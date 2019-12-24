@@ -57,5 +57,15 @@
         </div>
       </div>
     </div>
+      
+    <div class="secondFooter">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center pt-3 pb-2">
+            <a href="https://www.onwebmax.com/" target="_blank" class="onwebmax onwebmaxFooter">Website Design By <img src="https://www.onwebmax.com/wp-content/uploads/2018/12/logo_white.png" style="width: 100px;"></a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </footer>

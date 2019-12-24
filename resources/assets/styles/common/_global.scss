@@ -42,12 +42,21 @@ body {
   margin-bottom: 0;
   padding: 50px 0;
   text-align: center;
+  font-family: "Exo 2", sans-serif;
 }
 
 .bg-color-custom {
-  margin-bottom: 50px;
   background-color: #fff;
   border-bottom: 1px solid #7d7d7d66;
+}
+
+.secondFooter a {
+  color: #919191;
+}
+
+.secondFooter a:hover {
+  color: #fff;
+  text-decoration: none;
 }
 
 #navbarNavDropdown a {
@@ -160,4 +169,144 @@ body {
 
 .autoMargianta {
   margin: auto;
+}
+
+.secondFooter {
+  background-color: #3e3e3e;
+}
+
+.colorLayout {
+  background-color: rgba(54, 84, 99, 0.69);
+  min-height: 460px;
+}
+
+.heroImage {
+  background-image: url(http://localhost/nixon/wp-content/uploads/2019/12/black-and-white-architecture-photography-1920x1080-1.jpg);
+  background-position: center;
+}
+
+.heroImage h1 {
+  padding-top: 100px;
+  padding-bottom: 10px;
+  font-weight: 600;
+  font-size: 60px;
+  font-family: "Exo 2", sans-serif;
+}
+
+.heroImage p {
+  font-size: 18px;
+}
+
+.heroImage .col-lg-7 {
+  color: #ebeeef;
+}
+
+.wrapCustom {
+  margin-top: 50px;
+}
+
+.btnHero {
+  border-radius: 50px;
+  padding: 20px 90px;
+  margin-top: 20px;
+  margin-bottom: 100px;
+  background-color: transparent;
+  border: 2px solid #fff;
+}
+
+.btnHero:hover {
+  background-color: #57b846;
+  border-color: #57b846;
+}
+
+.profile-card-3 {
+  font-family: "Open Sans", Arial, sans-serif;
+  position: relative;
+  float: left;
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
+  height: 368px;
+  border: 1px solid #cacaca;
+}
+
+.profile-card-3 .background-block {
+  float: left;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.profile-card-3 .background-block .background {
+  width: 100%;
+  vertical-align: top;
+  opacity: 0.9;
+  -webkit-filter: blur(0.5px);
+  filter: blur(0.5px);
+  -webkit-transform: scale(1.8);
+  transform: scale(2.8);
+}
+
+.profile-card-3 .profile {
+  border-radius: 50%;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  max-width: 100px;
+  opacity: 1;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 1);
+  -webkit-transform: translate(-50%, 0%);
+  transform: translate(-50%, 0%);
+  z-index: 99999;
+}
+
+.profile-card-3 .card-content {
+  width: 100%;
+  padding: 15px 25px;
+  color: #232323;
+  float: left;
+  background: #fff;
+  height: 50%;
+  border-radius: 0 0 5px 5px;
+  position: relative;
+  z-index: 9999;
+}
+
+.profile-card-3 .card-content::before {
+  content: "";
+  background: #fff;
+  width: 120%;
+  height: 100%;
+  left: 11px;
+  bottom: 51px;
+  position: absolute;
+  z-index: -1;
+  transform: rotate(-13deg);
+}
+
+.profile-card-3 h2 {
+  margin: 0 0 5px;
+  font-weight: 600;
+  font-size: 25px;
+  font-family: "Exo 2", sans-serif;
+}
+
+.btnCards {
+  border-radius: 50px;
+  padding: 10px 30px;
+  margin-top: 33px;
+  background-color: transparent;
+  border: 2px solid #b7b7b7;
+  color: #797979;
+}
+
+.btnCards:hover {
+  background-color: #57b846;
+  border-color: #57b846;
+}
+
+.packageText {
+  font-family: "Exo 2", sans-serif;
+  font-weight: 600;
 }

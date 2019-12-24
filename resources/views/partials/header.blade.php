@@ -13,8 +13,7 @@
         {!! wp_nav_menu(['theme_location' => 'primary_navigation', 'menu_class' => 'nav']) !!}
       @endif
       <ul id="menu-menu-2" class="nav">
-        <li id="" class="loginheaderButton"><a href="#">Login</a></li>
-        <li id="" class="tryitheaderButton"><a href="#">APPLY</a></li>
+        <!-- <li id="" class="loginheaderButton"><a href="#">Login</a></li> -->
       </ul>
     </div>
   </div>
