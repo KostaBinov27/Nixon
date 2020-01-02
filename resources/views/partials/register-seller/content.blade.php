@@ -1,4 +1,6 @@
 <?php
+GLOBAL $conn;
+
 if (isset($_POST['userRegisterBTN'])){
     $sql = "SELECT * FROM seller_users WHERE email_address = '".$_POST['userEmailAddress']."'";
     $result = mysqli_query($conn, $sql);
@@ -8,7 +10,7 @@ if (isset($_POST['userRegisterBTN'])){
     } else {
         $pass = md5($_POST['userPasswordRetype']);
         $dateOfBirth = $_POST['userYear'].'-'.$_POST['userMonth'].'-'.$_POST['userDay'];
-        $sql = "INSERT INTO seller_users (email_address, user_password, date_of_birth, user_address, city, country, paypal_email) VALUES ('".$_POST['userEmailAddress']."', '".$pass."', '". $dateOfBirth ."', '".$_POST['userAddress']."', '".$_POST['userCity']."', '".$_POST['userCountry']."', '".$_POST['userEmailAddressPayPal']."')";
+        $sql = "INSERT INTO seller_users (email_address, user_password, firstName, firstName date_of_birth, user_address, city, country, paypal_email) VALUES ('".$_POST['userEmailAddress']."', '".$pass."', '".$_POST['userFistName']."', '".$_POST['userLastName']."', '". $dateOfBirth ."', '".$_POST['userAddress']."', '".$_POST['userCity']."', '".$_POST['userCountry']."', '".$_POST['userEmailAddressPayPal']."')";
         
         if (mysqli_query($conn, $sql)) {
             header("Location: http://google.com");
@@ -44,6 +46,16 @@ if (isset($_POST['userRegisterBTN'])){
                             </div>
                         </div>
                         <hr>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="firstName">First Name</label>
+                                <input type="text" class="form-control" name="userFistName" id="firstName" placeholder="Password" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control" name="userLastName" id="lastName" placeholder="Password" required>
+                            </div>
+                        </div>
                         <label>Date of Birth</label>
                         <div class="form-row">
                             <div class="form-group col-md-4">

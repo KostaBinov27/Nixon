@@ -1,6 +1,23 @@
 <?php
-if (isset($_POST['register'])){
-    die;
+GLOBAL $conn;
+
+if (isset($_POST['userRegisterBTN'])){
+    $sql = "SELECT * FROM seller_users WHERE email_address = '".$_POST['userEmailAddress']."'";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result->num_rows == 1) {
+        $info = "There is already user with this email address. Please <a href='/login'>login</a>";
+    } else {
+        $pass = md5($_POST['userPasswordRetype']);
+        $dateOfBirth = $_POST['userYear'].'-'.$_POST['userMonth'].'-'.$_POST['userDay'];
+        $sql = "INSERT INTO seller_users (email_address, user_password, firstName, firstName date_of_birth, user_address, city, country) VALUES ('".$_POST['userEmailAddress']."', '".$pass."', '".$_POST['userFirstName']."', '".$_POST['userLastName']."', '". $dateOfBirth ."', '".$_POST['userAddress']."', '".$_POST['userCity']."', '".$_POST['userCountry']."')";
+        
+        if (mysqli_query($conn, $sql)) {
+            header("Location: http://google.com");
+        } else {
+            $info = "There was some error. Please contact us on <a href='mailto:john@doe.com' class='alert-link'>john@doe.com</a>";
+        }
+    }
 }
 ?>
 
@@ -16,44 +33,54 @@ if (isset($_POST['register'])){
                         <div class="form-row">
                             <div class="form-group col-md-12">
                             <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" name="email" id="inputEmail4" placeholder="Email" required>
+                            <input type="email" class="form-control" name="userEmailAddress" id="inputEmail4" placeholder="Email" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                            <label for="inputPassword4">Password</label>
-                            <input type="password" class="form-control" name="password" id="inputPassword4" placeholder="Password" required>
+                                <label for="inputPassword4">Password</label>
+                                <input type="password" class="form-control" name="userPassword" id="inputPassword4" placeholder="Password" required>
                             </div>
                             <div class="form-group col-md-6">
-                            <label for="inputPassword4reenter">Re-enter Password</label>
-                            <input type="password" class="form-control" name="passwordretype" id="inputPassword4reenter" placeholder="Password" required>
+                                <label for="inputPassword4reenter">Re-enter Password</label>
+                                <input type="password" class="form-control"  name="userPasswordRetype" id="inputPassword4reenter" placeholder="Password" required>
                             </div>
                         </div>
                         <hr>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="userFirstName">First Name</label>
+                                <input type="text" class="form-control" name="text" name="userFirstName" id="userFirstName" placeholder="First Name" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="userLastName">Laset Name</label>
+                                <input type="text" class="form-control" name="userLastName" id="inputPassword4reenter" placeholder="Last Name" required>
+                            </div>
+                        </div>
                         <label>Date of Birth</label>
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <input type="number" class="form-control" name="day" id="inputPassword4" placeholder="DD" required>
+                                <input type="number" class="form-control" name="userDay" id="inputPassword4" placeholder="DD" required>
                             </div>
                             <div class="form-group col-md-4">
-                                <input type="text" class="form-control" name="month" id="monthBirth" placeholder="MM" required>
+                                <input type="text" class="form-control" name="userMonth" id="monthBirth" placeholder="MM" required>
                             </div>
                             <div class="form-group col-md-4">
-                                <input type="number" class="form-control" name="year" id="yearBirth" placeholder="YYYY" required>
+                                <input type="number" class="form-control" name="userYear" id="yearBirth" placeholder="YYYY" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputAddress">Address</label>
-                            <input type="text" class="form-control" name="address" id="inputAddress" placeholder="1234 Main St" required>
+                            <input type="text" class="form-control" name="userAddress" id="inputAddress" placeholder="1234 Main St" required>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputCity">City</label>
-                                <input type="text" class="form-control" id="inputCity" required>
+                                <input type="text" class="form-control" name="userCity" id="inputCity" required>
                             </div>
                             <div class="form-group col-md-6">
                             <label for="inputState">Country</label>
-                            <select id="inputState" name="day" name="country" class="form-control" required>
+                            <select id="inputState" name="day" name="userCountry" class="form-control" required>
                                 <option value="" selected="selected">Select Country</option> 
                                 <option value="United States">United States</option> 
                                 <option value="United Kingdom">United Kingdom</option> 
@@ -311,7 +338,7 @@ if (isset($_POST['register'])){
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" name="register" class="btn btn-primary loginBTN">Register</button>
+                        <button type="submit" name="userRegisterBTN" class="btn btn-primary loginBTN">Register</button>
                     </form>
                 </div>
             </div>
