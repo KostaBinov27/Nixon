@@ -1,3 +1,9 @@
+<?php
+if (isset($_POST['register'])){
+    die;
+}
+?>
+
 <div class="container wrapCustom">
     <div class="row">
         <div class="col-lg-8 mx-auto">
@@ -6,52 +12,48 @@
                     <h3>Register as Buyer</h3>
                 </div>
                 <div class="form-design">
-                    <form>
+                    <form methot="POST">
                         <div class="form-row">
                             <div class="form-group col-md-12">
                             <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                            <input type="email" class="form-control" name="email" id="inputEmail4" placeholder="Email" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                             <label for="inputPassword4">Password</label>
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                            <input type="password" class="form-control" name="password" id="inputPassword4" placeholder="Password" required>
                             </div>
                             <div class="form-group col-md-6">
                             <label for="inputPassword4reenter">Re-enter Password</label>
-                            <input type="password" class="form-control" id="inputPassword4reenter" placeholder="Password">
+                            <input type="password" class="form-control" name="passwordretype" id="inputPassword4reenter" placeholder="Password" required>
                             </div>
                         </div>
                         <hr>
                         <label>Date of Birth</label>
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <input type="number" class="form-control" id="inputPassword4" placeholder="DD">
+                                <input type="number" class="form-control" name="day" id="inputPassword4" placeholder="DD" required>
                             </div>
                             <div class="form-group col-md-4">
-                                <input type="text" class="form-control" id="monthBirth" placeholder="MM">
+                                <input type="text" class="form-control" name="month" id="monthBirth" placeholder="MM" required>
                             </div>
                             <div class="form-group col-md-4">
-                                <input type="number" class="form-control" id="yearBirth" placeholder="YYYY">
+                                <input type="number" class="form-control" name="year" id="yearBirth" placeholder="YYYY" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputAddress">Address</label>
-                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                            <input type="text" class="form-control" name="address" id="inputAddress" placeholder="1234 Main St" required>
                         </div>
-                        <!-- <div class="form-group">
-                            <label for="inputAddress2">Address 2</label>
-                            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                        </div> -->
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                            <label for="inputCity">City</label>
-                            <input type="text" class="form-control" id="inputCity">
+                                <label for="inputCity">City</label>
+                                <input type="text" class="form-control" id="inputCity" required>
                             </div>
                             <div class="form-group col-md-6">
-                            <label for="inputState">State</label>
-                            <select id="inputState" class="form-control">
+                            <label for="inputState">Country</label>
+                            <select id="inputState" name="day" name="country" class="form-control" required>
                                 <option value="" selected="selected">Select Country</option> 
                                 <option value="United States">United States</option> 
                                 <option value="United Kingdom">United Kingdom</option> 
@@ -296,24 +298,20 @@
                                 <option value="Zimbabwe">Zimbabwe</option>
                             </select>
                             </div>
-                            <!-- <div class="form-group col-md-2">
-                                <label for="inputZip">Zip</label>
-                                <input type="text" class="form-control" id="inputZip">
-                            </div> -->
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <div class="form-group">
                                     <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="gridCheck">
-                                    <label class="form-check-label" for="gridCheck">
+                                    <label class="form-check-label" for="gridCheck" required>
                                         I consent to terms and privacy policy
                                     </label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary loginBTN">Register</button>
+                        <button type="submit" name="register" class="btn btn-primary loginBTN">Register</button>
                     </form>
                 </div>
             </div>

@@ -1,3 +1,23 @@
+<?php
+if (isset($_POST['userRegisterBTN'])){
+    $sql = "SELECT * FROM seller_users WHERE email_address = '".$_POST['userEmailAddress']."'";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result->num_rows == 1) {
+        $info = "There is already user with this email address. Please <a href='/login'>login</a>";
+    } else {
+        $pass = md5($_POST['userPasswordRetype']);
+        $dateOfBirth = $_POST['userYear'].'-'.$_POST['userMonth'].'-'.$_POST['userDay'];
+        $sql = "INSERT INTO seller_users (email_address, user_password, date_of_birth, user_address, city, country, paypal_email) VALUES ('".$_POST['userEmailAddress']."', '".$pass."', '". $dateOfBirth ."', '".$_POST['userAddress']."', '".$_POST['userCity']."', '".$_POST['userCountry']."', '".$_POST['userEmailAddressPayPal']."')";
+        
+        if (mysqli_query($conn, $sql)) {
+            header("Location: http://google.com");
+        } else {
+            $info = "There was some error. Please contact us on <a href='mailto:john@doe.com' class='alert-link'>john@doe.com</a>";
+        }
+    }
+}
+?>
 <div class="container wrapCustom">
     <div class="row">
         <div class="col-lg-8 mx-auto">
@@ -6,52 +26,48 @@
                     <h3>Register as Seller</h3>
                 </div>
                 <div class="form-design">
-                    <form>
+                    <form action="" method="POST">
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                            <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                                <label for="inputEmail4">Email</label>
+                                <input type="email" class="form-control" name="userEmailAddress" id="inputEmail4" placeholder="Email" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                             <label for="inputPassword4">Password</label>
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                            <input type="password" class="form-control" name="userPassword" id="inputPassword4" placeholder="Password" required>
                             </div>
                             <div class="form-group col-md-6">
                             <label for="inputPassword4reenter">Re-enter Password</label>
-                            <input type="password" class="form-control" id="inputPassword4reenter" placeholder="Password">
+                            <input type="password" class="form-control" name="userPasswordRetype" id="inputPassword4reenter" placeholder="Password" required>
                             </div>
                         </div>
                         <hr>
                         <label>Date of Birth</label>
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <input type="number" class="form-control" id="inputPassword4" placeholder="DD">
+                                <input type="number" class="form-control" name="userDay" id="inputPassword4" placeholder="DD" required>
                             </div>
                             <div class="form-group col-md-4">
-                                <input type="text" class="form-control" id="monthBirth" placeholder="MM">
+                                <input type="text" class="form-control" name="userMonth" id="monthBirth" placeholder="MM" required>
                             </div>
                             <div class="form-group col-md-4">
-                                <input type="number" class="form-control" id="yearBirth" placeholder="YYYY">
+                                <input type="number" class="form-control" name="userYear" id="yearBirth" placeholder="YYYY" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputAddress">Address</label>
-                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                            <input type="text" class="form-control" name="userAddress" id="inputAddress" placeholder="1234 Main St" required>
                         </div>
-                        <!-- <div class="form-group">
-                            <label for="inputAddress2">Address 2</label>
-                            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                        </div> -->
                         <div class="form-row">
                             <div class="form-group col-md-6">
                             <label for="inputCity">City</label>
-                            <input type="text" class="form-control" id="inputCity">
+                                <input type="text" class="form-control" name="userCity" id="inputCity" required>
                             </div>
                             <div class="form-group col-md-6">
-                            <label for="inputState">State</label>
-                            <select id="inputState" class="form-control">
+                            <label for="inputState">Country</label>
+                            <select id="inputState" name="userCountry" class="form-control" required>
                                 <option value="" selected="selected">Select Country</option> 
                                 <option value="United States">United States</option> 
                                 <option value="United Kingdom">United Kingdom</option> 
@@ -296,26 +312,22 @@
                                 <option value="Zimbabwe">Zimbabwe</option>
                             </select>
                             </div>
-                            <!-- <div class="form-group col-md-2">
-                                <label for="inputZip">Zip</label>
-                                <input type="text" class="form-control" id="inputZip">
-                            </div> -->
                         </div>
                         <hr>
                         <div class="form-row mb-5">
                         <div class="form-group col-md-12">
                                 <label>PayPal Email Address</label>
-                                <input type="email" class="form-control" id="payPalEmail" placeholder="john@doe.com">
+                                <input type="email" class="form-control" name="userEmailAddressPayPal" id="payPalEmail" placeholder="john@doe.com" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <div class="form-group">
                                     <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                    <label class="form-check-label" for="gridCheck">
-                                        I have business PayPal account
-                                    </label>
+                                        <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                                        <label class="form-check-label" for="gridCheck" >
+                                            I have business PayPal account
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -324,15 +336,20 @@
                             <div class="form-group col-md-12">
                                 <div class="form-group">
                                     <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                    <label class="form-check-label" for="gridCheck">
-                                        I consent to terms and privacy policy
-                                    </label>
+                                        <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                                        <label class="form-check-label" for="gridCheck" >
+                                            I consent to terms and privacy policy
+                                        </label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary loginBTN">Register</button>
+                        <?php if ($info){ ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo $info; ?>
+                            </div>
+                        <?php } ?>
+                        <button type="submit" name="userRegisterBTN" class="btn btn-primary loginBTN">Register</button>
                     </form>
                 </div>
             </div>
