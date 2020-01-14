@@ -10,7 +10,7 @@ if (isset($_POST['userRegisterBTN'])){
     } else {
         $pass = md5($_POST['userPasswordRetype']);
         $dateOfBirth = $_POST['userYear'].'-'.$_POST['userMonth'].'-'.$_POST['userDay'];
-        $sql = "INSERT INTO seller_users (email_address, user_password, firstName, firstName date_of_birth, user_address, city, country) VALUES ('".$_POST['userEmailAddress']."', '".$pass."', '".$_POST['userFirstName']."', '".$_POST['userLastName']."', '". $dateOfBirth ."', '".$_POST['userAddress']."', '".$_POST['userCity']."', '".$_POST['userCountry']."')";
+        $sql = "INSERT INTO seller_users (email_address, user_password, firstName, lastName, date_of_birth, user_address, city, country) VALUES ('".$_POST['userEmailAddress']."', '".$pass."', '".$_POST['userFirstName']."', '".$_POST['userLastName']."', '". $dateOfBirth ."', '".$_POST['userAddress']."', '".$_POST['userCity']."', '".$_POST['userCountry']."')";
         
         if (mysqli_query($conn, $sql)) {
             header("Location: http://google.com");

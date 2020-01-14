@@ -310,3 +310,45 @@ body {
   font-family: "Exo 2", sans-serif;
   font-weight: 600;
 }
+
+.heroImageBuyerDashboard {
+  background-image: url(http://localhost/nixon/wp-content/uploads/2020/01/OCERHB0-scaled.jpg);
+  background-position-y: -660px;
+}
+
+.heroImageBuyerDashboard h1 {
+  color: #fff;
+  text-transform: uppercase;
+  font-family: "Exo 2", sans-serif;
+}
+
+.heroImageBuyerDashboard .colorLayout {
+  padding: 120px;
+  min-height: auto !important;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .banner .nav a.active,
+.banner .nav .nav-pills a.active,
+.nav-pills .show > .nav-link,
+.nav-pills .banner .nav .show > a,
+.banner .nav .nav-pills .show > a {
+  background-color: #57b846;
+  border-color: #57b846;
+}
+
+.nav-pills .nav-link,
+.nav-pills .banner .nav a,
+.banner .nav .nav-pills a {
+  color: #666;
+  text-decoration: none;
+  background-color: transparent;
+  border-bottom: 1px solid #bdbdbd;
+  border-radius: 0 !important;
+}
+
+.nav-pills .nav-link,
+.nav-pills .banner .nav a,
+.banner .nav .nav-pills a:hover {
+  color: #888888;
+}
