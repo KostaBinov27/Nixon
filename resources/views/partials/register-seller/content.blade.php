@@ -1,22 +1,45 @@
 <?php
 GLOBAL $conn;
+GLOBAL $connWP;
 
 if (isset($_POST['userRegisterBTN'])){
-    $sql = "SELECT * FROM seller_users WHERE email_address = '".$_POST['userEmailAddress']."'";
-    $result = mysqli_query($conn, $sql);
+    // $sql = "SELECT * FROM seller_users WHERE email_address = '".$_POST['userEmailAddress']."'";
+    // $result = mysqli_query($conn, $sql);
+
+    // if ($result->num_rows == 1) {
+    //     $info = "There is already user with this email address. Please <a href='/login'>login</a>";
+    // } else {
+    //     $pass = md5($_POST['userPasswordRetype']);
+    //     $dateOfBirth = $_POST['userYear'].'-'.$_POST['userMonth'].'-'.$_POST['userDay'];
+    //     $sql = "INSERT INTO seller_users (email_address, user_password, firstName, firstName date_of_birth, user_address, city, country, paypal_email) VALUES ('".$_POST['userEmailAddress']."', '".$pass."', '".$_POST['userFistName']."', '".$_POST['userLastName']."', '". $dateOfBirth ."', '".$_POST['userAddress']."', '".$_POST['userCity']."', '".$_POST['userCountry']."', '".$_POST['userEmailAddressPayPal']."')";
+        
+    //     if (mysqli_query($conn, $sql)) {
+    //         header("Location: http://google.com");
+    //     } else {
+    //         $info = "There was some error. Please contact us on <a href='mailto:john@doe.com' class='alert-link'>john@doe.com</a>";
+    //     }
+    // }
+
+    $sql = "SELECT * FROM wp_users WHERE user_email = '".$_POST['userEmailAddress']."'";
+    $result = mysqli_query($connWP, $sql);
 
     if ($result->num_rows == 1) {
         $info = "There is already user with this email address. Please <a href='/login'>login</a>";
     } else {
-        $pass = md5($_POST['userPasswordRetype']);
-        $dateOfBirth = $_POST['userYear'].'-'.$_POST['userMonth'].'-'.$_POST['userDay'];
-        $sql = "INSERT INTO seller_users (email_address, user_password, firstName, firstName date_of_birth, user_address, city, country, paypal_email) VALUES ('".$_POST['userEmailAddress']."', '".$pass."', '".$_POST['userFistName']."', '".$_POST['userLastName']."', '". $dateOfBirth ."', '".$_POST['userAddress']."', '".$_POST['userCity']."', '".$_POST['userCountry']."', '".$_POST['userEmailAddressPayPal']."')";
-        
-        if (mysqli_query($conn, $sql)) {
-            header("Location: http://google.com");
+        if ($_POST['userPasswordRetype'] == $_POST['userPassword']){
+            $pass = md5($_POST['userPasswordRetype']);
+            $dateOfBirth = $_POST['userYear'].'-'.$_POST['userMonth'].'-'.$_POST['userDay'];
+            $sql = "INSERT INTO wp_users (user_login, user_pass, user_nicename, user_email, display_name) VALUES ('".$_POST['userFistName']."', '".$pass."', '".$_POST['userFistName']."', '".$_POST['userEmailAddress']."', '".$_POST['userFistName']."')";
+            
+            if (mysqli_query($connWP, $sql)) {
+                header("Location: http://google.com");
+            } else {
+                $info = "There was some error. Please contact us on <a href='mailto:john@doe.com' class='alert-link'>john@doe.com</a>";
+            }
         } else {
-            $info = "There was some error. Please contact us on <a href='mailto:john@doe.com' class='alert-link'>john@doe.com</a>";
+            $info = "Password do not match!";
         }
+        
     }
 }
 ?>
@@ -49,11 +72,11 @@ if (isset($_POST['userRegisterBTN'])){
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="firstName">First Name</label>
-                                <input type="text" class="form-control" name="userFistName" id="firstName" placeholder="Password" required>
+                                <input type="text" class="form-control" name="userFistName" id="firstName" placeholder="First Name" required>
                             </div>
                             <div class="form-group col-md-6">
                             <label for="lastName">Last Name</label>
-                            <input type="text" class="form-control" name="userLastName" id="lastName" placeholder="Password" required>
+                            <input type="text" class="form-control" name="userLastName" id="lastName" placeholder="Last Name" required>
                             </div>
                         </div>
                         <label>Date of Birth</label>
