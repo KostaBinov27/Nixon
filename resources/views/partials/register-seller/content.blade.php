@@ -36,6 +36,48 @@ if (isset($_POST['userRegisterBTN'])){
             } else {
                 $info = "There was some error. Please contact us on <a href='mailto:john@doe.com' class='alert-link'>john@doe.com</a>";
             }
+
+            sleep(1);
+
+            $sql = "SELECT * FROM wp_users WHERE user_email = '".$_POST['userEmailAddress']."'";
+            $result = mysqli_query($connWP, $sql);
+            $rezultat = $result -> fetch_assoc();
+            $newUserID = $rezultat['ID']; 
+
+            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_email', '".$_POST['userEmailAddressPayPal']."')";
+            $result = mysqli_query($connWP, $sql);
+
+            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'first_name', '".$_POST['userFistName']."')";
+            $result = mysqli_query($connWP, $sql);
+
+            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'last_name', '".$_POST['userLastName']."')";
+            $result = mysqli_query($connWP, $sql);
+            
+            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'nickname', '".$_POST['userFistName']."')";
+            $result = mysqli_query($connWP, $sql);
+            
+            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_first_name', '".$_POST['userFistName']."')";
+            $result = mysqli_query($connWP, $sql);
+
+            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_last_name', '".$_POST['userLastName']."')";
+            $result = mysqli_query($connWP, $sql);
+            
+            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_address_1', '".$_POST['userAddress']."')";
+            $result = mysqli_query($connWP, $sql);
+            
+            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_city', '".$_POST['userCity']."')";
+            $result = mysqli_query($connWP, $sql);
+            
+            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_country', '".$_POST['userCountry']."')";
+            $result = mysqli_query($connWP, $sql);
+            
+            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'wp_capabilities', 'a:1:{s:17:\"dc_pending_vendor\";b:1;}')";
+            $result = mysqli_query($connWP, $sql);
+            
+            $dateOfBirth = $_POST['userYear'].'-'.$_POST['userMonth'].'-'.$_POST['userDay'];
+            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_email', '".$_POST['userEmailAddressPayPal']."')";
+            $result = mysqli_query($connWP, $sql);
+
         } else {
             $info = "Password do not match!";
         }
@@ -79,7 +121,7 @@ if (isset($_POST['userRegisterBTN'])){
                             <input type="text" class="form-control" name="userLastName" id="lastName" placeholder="Last Name" required>
                             </div>
                         </div>
-                        <label>Date of Birth</label>
+                        <!-- <label>Date of Birth</label>
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <input type="number" class="form-control" name="userDay" id="inputPassword4" placeholder="DD" required>
@@ -90,7 +132,7 @@ if (isset($_POST['userRegisterBTN'])){
                             <div class="form-group col-md-4">
                                 <input type="number" class="form-control" name="userYear" id="yearBirth" placeholder="YYYY" required>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="inputAddress">Address</label>
                             <input type="text" class="form-control" name="userAddress" id="inputAddress" placeholder="1234 Main St" required>
