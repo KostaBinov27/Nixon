@@ -3,22 +3,6 @@ GLOBAL $conn;
 GLOBAL $connWP;
 
 if (isset($_POST['userRegisterBTN'])){
-    // $sql = "SELECT * FROM seller_users WHERE email_address = '".$_POST['userEmailAddress']."'";
-    // $result = mysqli_query($conn, $sql);
-
-    // if ($result->num_rows == 1) {
-    //     $info = "There is already user with this email address. Please <a href='/login'>login</a>";
-    // } else {
-    //     $pass = md5($_POST['userPasswordRetype']);
-    //     $dateOfBirth = $_POST['userYear'].'-'.$_POST['userMonth'].'-'.$_POST['userDay'];
-    //     $sql = "INSERT INTO seller_users (email_address, user_password, firstName, firstName date_of_birth, user_address, city, country, paypal_email) VALUES ('".$_POST['userEmailAddress']."', '".$pass."', '".$_POST['userFistName']."', '".$_POST['userLastName']."', '". $dateOfBirth ."', '".$_POST['userAddress']."', '".$_POST['userCity']."', '".$_POST['userCountry']."', '".$_POST['userEmailAddressPayPal']."')";
-        
-    //     if (mysqli_query($conn, $sql)) {
-    //         header("Location: http://google.com");
-    //     } else {
-    //         $info = "There was some error. Please contact us on <a href='mailto:john@doe.com' class='alert-link'>john@doe.com</a>";
-    //     }
-    // }
 
     $sql = "SELECT * FROM wp_users WHERE user_email = '".$_POST['userEmailAddress']."'";
     $result = mysqli_query($connWP, $sql);
@@ -27,56 +11,60 @@ if (isset($_POST['userRegisterBTN'])){
         $info = "There is already user with this email address. Please <a href='/login'>login</a>";
     } else {
         if ($_POST['userPasswordRetype'] == $_POST['userPassword']){
+            
             $pass = md5($_POST['userPasswordRetype']);
+            $date = date("Y-m-d", time()); 
             $dateOfBirth = $_POST['userYear'].'-'.$_POST['userMonth'].'-'.$_POST['userDay'];
-            $sql = "INSERT INTO wp_users (user_login, user_pass, user_nicename, user_email, display_name) VALUES ('".$_POST['userFistName']."', '".$pass."', '".$_POST['userFistName']."', '".$_POST['userEmailAddress']."', '".$_POST['userFistName']."')";
+            $sql = "INSERT INTO wp_users (user_login, user_pass, user_nicename, user_email, user_registered, display_name) VALUES ('".$_POST['userFistName']."', '".$pass."', '".$_POST['userFistName']."', '".$_POST['userEmailAddress']."', '".$date."', '".$_POST['userFistName']."')";
             
             if (mysqli_query($connWP, $sql)) {
+                
+                sleep(1);
+
+                $sql = "SELECT * FROM wp_users WHERE user_email = '".$_POST['userEmailAddress']."'";
+                $result = mysqli_query($connWP, $sql);
+                $rezultat = $result -> fetch_assoc();
+                $newUserID = $rezultat['ID']; 
+
+                $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_email', '".$_POST['userEmailAddressPayPal']."')";
+                $result = mysqli_query($connWP, $sql);
+
+                $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'first_name', '".$_POST['userFistName']."')";
+                $result = mysqli_query($connWP, $sql);
+
+                $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'last_name', '".$_POST['userLastName']."')";
+                $result = mysqli_query($connWP, $sql);
+                
+                $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'nickname', '".$_POST['userFistName']."')";
+                $result = mysqli_query($connWP, $sql);
+                
+                $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_first_name', '".$_POST['userFistName']."')";
+                $result = mysqli_query($connWP, $sql);
+
+                $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_last_name', '".$_POST['userLastName']."')";
+                $result = mysqli_query($connWP, $sql);
+                
+                $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_address_1', '".$_POST['userAddress']."')";
+                $result = mysqli_query($connWP, $sql);
+                
+                $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_city', '".$_POST['userCity']."')";
+                $result = mysqli_query($connWP, $sql);
+                
+                $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_country', '".$_POST['userCountry']."')";
+                $result = mysqli_query($connWP, $sql);
+                
+                $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'wp_capabilities', 'a:1:{s:17:\"dc_pending_vendor\";b:1;}')";
+                $result = mysqli_query($connWP, $sql);
+                
+                $dateOfBirth = $_POST['userYear'].'-'.$_POST['userMonth'].'-'.$_POST['userDay'];
+                $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_email', '".$_POST['userEmailAddressPayPal']."')";
+                $result = mysqli_query($connWP, $sql);
+
                 header("Location: http://google.com");
+
             } else {
                 $info = "There was some error. Please contact us on <a href='mailto:john@doe.com' class='alert-link'>john@doe.com</a>";
             }
-
-            sleep(1);
-
-            $sql = "SELECT * FROM wp_users WHERE user_email = '".$_POST['userEmailAddress']."'";
-            $result = mysqli_query($connWP, $sql);
-            $rezultat = $result -> fetch_assoc();
-            $newUserID = $rezultat['ID']; 
-
-            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_email', '".$_POST['userEmailAddressPayPal']."')";
-            $result = mysqli_query($connWP, $sql);
-
-            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'first_name', '".$_POST['userFistName']."')";
-            $result = mysqli_query($connWP, $sql);
-
-            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'last_name', '".$_POST['userLastName']."')";
-            $result = mysqli_query($connWP, $sql);
-            
-            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'nickname', '".$_POST['userFistName']."')";
-            $result = mysqli_query($connWP, $sql);
-            
-            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_first_name', '".$_POST['userFistName']."')";
-            $result = mysqli_query($connWP, $sql);
-
-            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_last_name', '".$_POST['userLastName']."')";
-            $result = mysqli_query($connWP, $sql);
-            
-            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_address_1', '".$_POST['userAddress']."')";
-            $result = mysqli_query($connWP, $sql);
-            
-            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_city', '".$_POST['userCity']."')";
-            $result = mysqli_query($connWP, $sql);
-            
-            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_country', '".$_POST['userCountry']."')";
-            $result = mysqli_query($connWP, $sql);
-            
-            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'wp_capabilities', 'a:1:{s:17:\"dc_pending_vendor\";b:1;}')";
-            $result = mysqli_query($connWP, $sql);
-            
-            $dateOfBirth = $_POST['userYear'].'-'.$_POST['userMonth'].'-'.$_POST['userDay'];
-            $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_email', '".$_POST['userEmailAddressPayPal']."')";
-            $result = mysqli_query($connWP, $sql);
 
         } else {
             $info = "Password do not match!";
