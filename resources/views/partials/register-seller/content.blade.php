@@ -13,7 +13,7 @@ if (isset($_POST['userRegisterBTN'])){
         if ($_POST['userPasswordRetype'] == $_POST['userPassword']){
             
             $pass = md5($_POST['userPasswordRetype']);
-            $date = date("Y-m-d", time()); 
+            $date = date("Y-m-d", time());
             $dateOfBirth = $_POST['userYear'].'-'.$_POST['userMonth'].'-'.$_POST['userDay'];
             $sql = "INSERT INTO wp_users (user_login, user_pass, user_nicename, user_email, user_registered, display_name) VALUES ('".$_POST['userFistName']."', '".$pass."', '".$_POST['userFistName']."', '".$_POST['userEmailAddress']."', '".$date."', '".$_POST['userFistName']."')";
             
@@ -60,7 +60,12 @@ if (isset($_POST['userRegisterBTN'])){
                 $sql = "INSERT INTO wp_usermeta (user_id, meta_key, meta_value) VALUES ('".$newUserID."', 'billing_email', '".$_POST['userEmailAddressPayPal']."')";
                 $result = mysqli_query($connWP, $sql);
 
-                header("Location: http://google.com");
+                $_SESSION['userID'] = $newUserID;
+                $_SESSION['userName'] = $_POST['userFistName'];
+                $_SESSION['loggedIn'] = 1;
+                $_SESSION['userEmail'] = $_POST['userEmailAddress'];
+
+                header("Location: http://localhost/nixon/seller-dashboard/");
 
             } else {
                 $info = "There was some error. Please contact us on <a href='mailto:john@doe.com' class='alert-link'>john@doe.com</a>";
