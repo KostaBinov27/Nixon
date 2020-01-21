@@ -1,3 +1,48 @@
+<?php
+GLOBAL $conn;
+GLOBAL $connWP;
+
+    if (isset($_POST['addNewProduct'])) {
+        
+        $current_date = date("Y-m-d", time());
+        $sql = "INSERT INTO wp_posts (post_author, post_content, post_title, post_status, comment_status, ping_status, post_type) VALUES ('".$_SESSION['userID']."', '".$current_date." 00:00:00', '".$current_date." 00:00:00', '".$_POST['product_description']."', '".$_POST['productName']."', 'auto-draft', 'open', 'closed', 'product')";
+        $rez = mysqli_query($connWP, $sql);
+        print_r($rez);
+        die;
+        if (mysqli_query($connWP, $sql)) {
+            sleep(2);
+            // Get latest ID from wp_posts (the id of the current inserted product)
+            $sql = "SELECT * FROM wp_posts WHERE ID = (SELECT MAX(ID) FROM wp_posts)";
+            $result = mysqli_query($connWP, $sql);
+            $row = $result -> fetch_assoc();
+            $latestID = $row['ID'];
+
+            $sql = "INSERT INTO wp_postmeta (post_id, meta_key, meta_value) VALUES ('".$latestID."', '_regular_price', '".$_POST['regularPrice']."')";
+            $result = mysqli_query($connWP, $sql);
+
+            $sql = "INSERT INTO wp_postmeta (post_id, meta_key, meta_value) VALUES ('".$latestID."', '_stock_status', 'instock')";
+            $result = mysqli_query($connWP, $sql);
+
+            $sql = "INSERT INTO wp_postmeta (post_id, meta_key, meta_value) VALUES ('".$latestID."', '_price', '".$_POST['regularPrice']."')";
+            $result = mysqli_query($connWP, $sql);
+
+            $sql = "INSERT INTO wp_postmeta (post_id, meta_key, meta_value) VALUES ('".$latestID."', '_commission_per_product', '0')";
+            $result = mysqli_query($connWP, $sql);
+
+            $sql = "INSERT INTO wp_postmeta (post_id, meta_key, meta_value) VALUES ('".$latestID."', '_download_limit', '-1')";
+            $result = mysqli_query($connWP, $sql);
+
+            $sql = "INSERT INTO wp_postmeta (post_id, meta_key, meta_value) VALUES ('".$latestID."', '_download_expiry', '-1')";
+
+            if (mysqli_query($connWP, $sql)){
+                $success = "Product successfully posted for review.";
+            }
+        } else {
+            $info = "There was some error please contact us.";
+        }
+    }
+?>
+
 <div class="heroImageBuyerDashboard">
     <div class="colorLayout">
         <div class="container">
@@ -9,8 +54,19 @@
         </div>
     </div>
 </div>
-
+<?php print_r($_SESSION); ?>
 <div class="container">
+    <div class="row mt-5">
+        <?php if ($success){ ?>
+            <div class="alert alert-success" role="alert">
+                <?php echo $success; ?>
+            </div>
+        <?php } else if ($info) { ?>
+            <div class="alert alert-danger" role="alert">
+                <?php echo $info; ?>
+            </div>
+       <?php } ?>
+    </div>
     <div class="row mt-5">
         <div class="col-lg-3">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -69,13 +125,13 @@
                     </form>
                 </div>
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    <form>
+                    <form method="POST">
                         <h2>Add New Product</h2>
                         <hr>
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="inputEmail4">Product Name</label>
-                                <input type="email" class="form-control" id="inputEmail4" placeholder="" required>
+                                <input type="text" class="form-control" name="productName" id="inputEmail4" placeholder="" required>
                             </div>
                         </div>
                         <div class="form-row">
@@ -87,7 +143,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputAddress2">Regular price (€)</label>
-                                <input type="text" class="form-control" id="inputAddress2" placeholder="e.g. 5.19" required>
+                                <input type="text" class="form-control" id="inputPrice" name="regularPrice" placeholder="e.g. 5.19" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputAddress2">Sale price (€)</label>
@@ -109,7 +165,7 @@
                             </div> -->
                         </div>
                         <div class="form-row mt-5">
-                            <button type="submit" class="btn btn-primary loginBTN mx-auto">Submit for Review</button>
+                            <button type="submit" name="addNewProduct" class="btn btn-primary loginBTN mx-auto">Submit for Review</button>
                         </div>
                     </form>
                 </div>
