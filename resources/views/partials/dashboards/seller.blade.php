@@ -3,12 +3,10 @@ GLOBAL $conn;
 GLOBAL $connWP;
 
     if (isset($_POST['addNewProduct'])) {
+        $_SESSION['userID'] = 2;
         
-        $current_date = date("Y-m-d", time());
-        $sql = "INSERT INTO wp_posts (post_author, post_content, post_title, post_status, comment_status, ping_status, post_type) VALUES ('".$_SESSION['userID']."', '".$current_date." 00:00:00', '".$current_date." 00:00:00', '".$_POST['product_description']."', '".$_POST['productName']."', 'auto-draft', 'open', 'closed', 'product')";
-        $rez = mysqli_query($connWP, $sql);
-        print_r($rez);
-        die;
+        $current_date = date("Y-m-d");
+        $sql = "INSERT INTO wp_posts (post_author, post_date, post_date_gmt, post_content, post_title, post_status, post_type, ping_status) VALUES ('".$_SESSION['userID']."', '".$current_date."','".$current_date."','".$_POST['product_description']."','".$_POST['productName']."','pending','product','closed')";
         if (mysqli_query($connWP, $sql)) {
             sleep(2);
             // Get latest ID from wp_posts (the id of the current inserted product)
@@ -23,6 +21,9 @@ GLOBAL $connWP;
             $sql = "INSERT INTO wp_postmeta (post_id, meta_key, meta_value) VALUES ('".$latestID."', '_stock_status', 'instock')";
             $result = mysqli_query($connWP, $sql);
 
+            $sql = "INSERT INTO wp_postmeta (post_id, meta_key, meta_value) VALUES ('".$latestID."', '_downloadable', 'yes')";
+            $result = mysqli_query($connWP, $sql);
+
             $sql = "INSERT INTO wp_postmeta (post_id, meta_key, meta_value) VALUES ('".$latestID."', '_price', '".$_POST['regularPrice']."')";
             $result = mysqli_query($connWP, $sql);
 
@@ -31,6 +32,35 @@ GLOBAL $connWP;
 
             $sql = "INSERT INTO wp_postmeta (post_id, meta_key, meta_value) VALUES ('".$latestID."', '_download_limit', '-1')";
             $result = mysqli_query($connWP, $sql);
+            
+            // if ( !empty($_FILES['image']['name']) && empty($_FILES['image_hiden'])) {
+                // $dirPath = getcwd();
+                // require_once( $dirPath . '/wp-admin/includes/image.php' );
+    
+                // require_once( $dirPath . '/wp-admin/includes/file.php' );
+            
+                // require_once( $dirPath . '/wp-admin/includes/media.php' );
+                            
+                // // Get the path to the upload directory. 
+                // // If it was uploaded to WP, wp_upload_dir() does the job
+                // $filename = $_FILES['image'];
+                // print_r($filename);
+                // $wp_upload_dir = wp_upload_dir();
+                // $full_path = $wp_upload_dir['path'] . $filename['name'];
+                // // Check the type of file. We'll use this as the 'post_mime_type'.
+                // $filetype = wp_check_filetype(basename($full_path), null);
+                // // Prepare an array of post data for the attachment.
+                // $attachment = array(
+                //     'guid'           => $wp_upload_dir['url'] . '/' . basename($full_path), 
+                //     'post_mime_type' => $filetype['type'],
+                //     'post_title'     => preg_replace( '/\.[^.]+$/', '', basename($full_path) ),
+                //     'post_content'   => '',
+                //     'post_status'    => 'inherit'
+                // );
+                // // Insert the attachment.
+                // $attachment_id = media_handle_upload( 'image', $post_id );
+                // update_field('company_logo', $attachment_id, $post_id);
+            // }
 
             $sql = "INSERT INTO wp_postmeta (post_id, meta_key, meta_value) VALUES ('".$latestID."', '_download_expiry', '-1')";
 
@@ -153,10 +183,12 @@ GLOBAL $connWP;
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputAddress2">Upload Product Image</label>
+                                
                                 <br>
                                 <div class="file-upload">
-                                    <label for="upload" class="file-upload__label">Css only file upload button</label>
-                                    <input id="upload" class="file-upload__input" type="file" name="file-upload">
+                                    <label for="upload" class="file-upload__label">Upload Product Picture</label>
+                                    <input id="upload" name="image" class="file-upload__input" type="file">
+                                    <input type="hidden" name="image_hiden" multiple="false" />
                                 </div>
                             </div>
                             <!-- <div class="form-group col-md-6">
