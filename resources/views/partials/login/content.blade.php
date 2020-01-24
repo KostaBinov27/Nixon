@@ -2,7 +2,8 @@
 GLOBAL $conn;
 GLOBAL $connWP;
 
-    if (isset($_POST['login_seller'])) {
+    if (isset($_POST['login_seller_custom'])) {
+        
         $sql = "SELECT * FROM wp_users WHERE user_email = '".$_POST['emailSeller']."'";
         $result = mysqli_query($connWP, $sql);
         if ($result->num_rows == 1) {
@@ -12,6 +13,8 @@ GLOBAL $connWP;
             $_SESSION['loggedIn'] = 1;
             $_SESSION['userEmail'] = $rezultat['user_email'];
             header('Location: http://localhost/nixon/seller-dashboard/');
+        } else {
+            $info = "Invalid username or password please try again";
         }
     }
 ?>
@@ -36,7 +39,14 @@ GLOBAL $connWP;
                         <div class="form-group">
                             <a href="#" class="txt1">Forgot Password?</a>
                         </div>
-                        <button type="submit" name="login_Client" name="login_seller" class="btn btn-primary loginBTN">Login</button>
+                        <button type="submit" name="login_seller_custom" class="btn btn-primary loginBTN">Login</button>
+                        <div class="row mt-5">
+                        <?php if ($info) { ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo $info; ?>
+                            </div>
+                    <?php } ?>
+                    </div>
                     </form>
                 </div>
             </div>
