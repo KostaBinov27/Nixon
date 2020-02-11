@@ -3,6 +3,19 @@ body {
   font-family: "Exo 2", sans-serif;
 }
 
+a {
+  color: #808080;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:hover {
+  color: #57b846;
+  text-decoration: none;
+  background-color: transparent;
+  font-weight: 600;
+}
+
 .loginBTN {
   background-color: #57b846;
   border-color: #57b846;
@@ -391,6 +404,47 @@ body {
   text-align: center;
 }
 
-#example{
+#example {
   width: 100% !important;
+}
+
+.contentSingleProduct {
+  max-height: 130px;
+  overflow: scroll;
+}
+
+.cart {
+  display: flex;
+}
+
+p.price {
+  color: #77a464;
+  font-size: 1.25em;
+}
+
+.woocommerce a.button{
+  border-radius: 50px;
+  padding: 5px 30px;
+  background-color: transparent;
+  border: 2px solid #b7b7b7;
+  color: #797979;
+}
+
+.woocommerce button.button.alt {
+  border-radius: 50px;
+  padding: 5px 30px;
+  margin-left: 23px;
+  background-color: transparent;
+  border: 2px solid #b7b7b7;
+  color: #797979;
+}
+
+.woocommerce a.button:hover, .woocommerce button.button.alt:hover {
+  background-color: #57b846;
+  border-color: #57b846;
+  color: #fff;
+}
+
+.woocommerce ul.products li.product .price{
+  font-size: 1em;
 }
