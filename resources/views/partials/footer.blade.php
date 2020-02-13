@@ -6,7 +6,9 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-4">
-          <img src="https://www.childrenslearninginstitute.org/assets/aoes/aoe-logo.png" class="img-fluid">
+          <div class="logoWrap">
+            <img src="http://localhost/nixon/wp-content/uploads/2020/02/logo.png" class="img-fluid logofooter">
+          </div>
           <p>Get exclusive <b class="whiter">digital marketing</b> updates straight to your inbox.</p>
           <form>
             <input type="text">

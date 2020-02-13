@@ -25,7 +25,7 @@
             <div class="contentSingleProduct">
               @php the_content(); @endphp
             </div>
-            <div class="mt-5">
+            <div class="mt-5 singleFlex">
               @php woocommerce_template_single_price(); @endphp
             </div>
             <div>

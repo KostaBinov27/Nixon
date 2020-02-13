@@ -16,6 +16,18 @@ a:hover {
   font-weight: 600;
 }
 
+.logoHeader {
+  width: 70px;
+}
+
+.logoWrap{
+  text-align: center;
+}
+
+.logofooter {
+  width: 150px;
+}
+
 .loginBTN {
   background-color: #57b846;
   border-color: #57b846;
@@ -38,7 +50,7 @@ a:hover {
 }
 
 .form-header-design {
-  background-image: url(http://localhost/nixon/wp-content/uploads/2019/12/photo-1486406146926-c627a92ad1ab.jpg);
+  background-image: url(http://nixon.onwebmax.com/wp-content/uploads/2019/12/photo-1486406146926-c627a92ad1ab.jpg);
   background-position: center;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
@@ -195,7 +207,7 @@ a:hover {
 }
 
 .heroImage {
-  background-image: url(http://localhost/nixon/wp-content/uploads/2019/12/black-and-white-architecture-photography-1920x1080-1.jpg);
+  background-image: url(http://nixon.onwebmax.com/wp-content/uploads/2019/12/black-and-white-architecture-photography-1920x1080-1.jpg);
   background-position: center;
 }
 
@@ -326,7 +338,7 @@ a:hover {
 }
 
 .heroImageBuyerDashboard {
-  background-image: url(http://localhost/nixon/wp-content/uploads/2020/01/OCERHB0-scaled.jpg);
+  background-image: url(http://nixon.onwebmax.com/wp-content/uploads/2020/01/OCERHB0-scaled.jpg);
   background-position-y: -660px;
 }
 
@@ -413,13 +425,23 @@ a:hover {
   overflow: scroll;
 }
 
-.cart {
-  display: flex;
-}
+// .cart {
+//   display: flex;
+// }
 
 p.price {
   color: #77a464;
   font-size: 1.25em;
+}
+
+.woocommerce a.button.alt {
+    background-color: #57b846;
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+}
+
+.woocommerce a.button.alt:hover {
+    background-color: #77a464;
 }
 
 .woocommerce a.button{
@@ -432,11 +454,12 @@ p.price {
 
 .woocommerce button.button.alt {
   border-radius: 50px;
-  padding: 5px 30px;
-  margin-left: 23px;
-  background-color: transparent;
+  padding: 14px 30px;
+  margin: 0 auto;
+  font-weight: 500;
+  background-color: #57b846;
   border: 2px solid #b7b7b7;
-  color: #797979;
+  color: #ffffff;
 }
 
 .woocommerce a.button:hover, .woocommerce button.button.alt:hover {
@@ -447,4 +470,126 @@ p.price {
 
 .woocommerce ul.products li.product .price{
   font-size: 1em;
+}
+
+.woocommerce form .form-row label {
+  width: 100%;
+}
+
+.woocommerce-input-wrapper{
+  width: 100%;
+}
+
+.woocommerce form .form-row input.input-text{
+  height: 37px;
+  padding-left: 10px;
+  border: 1px solid #57b846;
+}
+
+#order_review_heading {
+  display: none;
+}
+
+.woocommerce-info {
+  border-top-color: #57b846;
+}
+
+.woocommerce-info::before {
+  color: #57b846;
+}
+
+.woocommerce-checkout #payment {
+  background: #ebe9eb;
+  border-radius: 5px;
+  border: 1px solid #57b846;
+}
+
+.woocommerce form .form-row .input-text, .woocommerce-page form .form-row .input-text {
+  border: 1px solid #57b846;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected], .select2-container--default .select2-results__option--highlighted[data-selected]{
+ background-color: #57b846; 
+}
+
+.woocommerce-cart table.cart td.actions .coupon .input-text {
+  width: 50%;
+}
+
+.woocommerce button.button {
+  background-color: #cacaca;
+}
+
+.woocommerce ul.products li.product, .woocommerce-page ul.products li.product{
+  border: 1px solid #bbbbbb;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  text-align: center;
+  padding-bottom: 15px;
+  transition: transform .2s;
+}
+
+.woocommerce-page ul.products li.product:hover{
+  transform: scale(1.1);
+  box-shadow: 6px 0 25px #ababab;
+}
+
+.woocommerce a.added_to_cart {
+  width: 100%;
+}
+
+.woocommerce-breadcrumb{
+  display: none;
+}
+
+.heroImage-shop {
+  background-image: url(http://nixon.onwebmax.com/wp-content/uploads/2020/02/Buildings-HD-Background-.jpg);
+  background-position: right;
+}
+
+.colorLayout-shop {
+  background-color: rgba(54, 84, 99, 0.69);
+}
+
+.heroImage-shop h1 {
+  padding: 100px 0;
+  font-weight: 600;
+  font-size: 60px;
+  font-family: "Exo 2", sans-serif;
+}
+
+.heroImage-shop .col-lg-7 {
+  color: #ebeeef;
+}
+
+.singleFlex .cart{
+  display:flex;
+}
+
+.homepage ul.products li.product {
+  float: left;
+  margin: 0 30px 2.992em 0;
+  transition: transform .2s;
+  padding: 0;
+  position: relative;
+  width: 22.05%;
+  margin-left: 0;
+}
+
+.homepage ul.products li.product:hover{
+  transform: scale(1.1);
+  box-shadow: 6px 0 25px #ababab;
+}
+
+.btnHomeBuyNow{
+  border-radius: 50px;
+  padding: 5px 50px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  background-color: #57b846;
+  border: 2px solid #ebeeef;
+}
+.btnHomeBuyNow:hover{
+  background-color: #57b846;
+  border: 2px solid #ebeeef;
 }

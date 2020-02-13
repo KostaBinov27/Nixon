@@ -2,7 +2,7 @@
   <div class="container">
     <a class="brand" href="{{ home_url('/') }}">
       <div class="brand-logo">
-          <p>NIXON SALES</p>  
+          <img src="http://localhost/nixon/wp-content/uploads/2020/02/logo.png" class="img-fluid logoHeader">
       </div>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
