@@ -90,3 +90,11 @@ Container::getInstance()
             'view' => require dirname(__DIR__).'/config/view.php',
         ]);
     }, true);
+
+
+function wpb_custom_new_menu() {
+    register_nav_menu('my-custom-menu',__( 'Logged In Menu' ));
+}
+
+add_action( 'init', 'wpb_custom_new_menu' );
+

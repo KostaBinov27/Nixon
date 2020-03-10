@@ -593,3 +593,22 @@ p.price {
   background-color: #57b846;
   border: 2px solid #ebeeef;
 }
+
+
+.rowPackages i {
+  color: #57b846;
+}
+
+.rowPackages ul{
+  text-align: left;
+  list-style: none;
+}
+
+.rowPackages hr{
+  margin: 0;
+}
+
+.rowPackages .card{
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}

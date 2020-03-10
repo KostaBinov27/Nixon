@@ -38,6 +38,7 @@ GLOBAL $connWP;
                         </div>
                         <div class="form-group">
                             <a href="#" class="txt1">Forgot Password?</a>
+                            <a href="/nixon/sign-up-seller/" class="txt1">Don't have account?</a>
                         </div>
                         <button type="submit" name="login_seller_custom" class="btn btn-primary loginBTN">Login</button>
                         <div class="row mt-5">

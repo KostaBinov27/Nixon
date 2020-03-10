@@ -71,3 +71,8 @@
     </div>
   </div>
 </footer>
+
+<script>
+  var test = <?php print_r(json_encode($_SESSION)); ?>;
+console.log(test);
+</script>
