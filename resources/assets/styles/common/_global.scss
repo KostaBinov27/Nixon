@@ -581,6 +581,20 @@ p.price {
   box-shadow: 6px 0 25px #ababab;
 }
 
+.submit-report-abuse{
+  border-radius: 50px;
+  padding: 5px 50px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  background-color: #57b846;
+  border: 2px solid #ebeeef;
+}
+
+.submit-report-abuse:hover{
+  background-color: #57b846;
+  border: 2px solid #ebeeef;
+}
+
 .btnHomeBuyNow{
   border-radius: 50px;
   padding: 5px 50px;

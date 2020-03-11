@@ -20,7 +20,8 @@
 
 $query = new WC_Product_Query( array(
     'limit' => 4,
-    'return' => 'ids'
+    'return' => 'ids',
+    'exclude' => array( 196,197 ),
 ) );
 $products = $query->get_products(); ?>
 <div class="container">
